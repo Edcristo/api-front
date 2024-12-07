@@ -25,6 +25,11 @@ export class ClienteService {
   cadastrar(obj: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.url, obj);
   }
+
+  // Método para editar clientes
+  editar(obj: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(this.url, obj);
+  }
 }
 
 
