@@ -15,6 +15,9 @@ export class PrincipalComponent {
   // Variável para visibilidade dos botões
   btnCadastro: boolean = true;
 
+  // Variável para visibilidade da tabela
+  tabela: boolean = true;
+
   // JSON de clientes
   clientes: Cliente[] = [];
 
@@ -30,20 +33,31 @@ export class PrincipalComponent {
   }
 
   // Método de cadastro
-  cadastrar():void{
+  cadastrar(): void {
     this.servico.cadastrar(this.cliente)
-    .subscribe(retorno => 
-      
+      .subscribe(retorno =>
+
       // Cadastrar o cliente no vetor
-      {this.clientes.push(retorno);});
+      { this.clientes.push(retorno); });
 
-      // Limpar formulário
-      this.cliente = new Cliente();
+    // Limpar formulário
+    this.cliente = new Cliente();
 
-      // Mensagem
-      alert('Cliente cadastrado com sucesso!');
+    // Mensagem
+    alert('Cliente cadastrado com sucesso!');
   }
 
+  // método para selecionar um cliente específico
+  selecionarCliente(posicao: number): void {
+    // Selecionar cliente no vetor
+    this.cliente = this.clientes[posicao];
+
+    // Visibilidade dos botões
+    this.btnCadastro = false
+
+    // Visibilidade da tabela
+    this.tabela = false;
+  }
   // Método de inciialização
   ngOnInit() {
     this.selecionar();
