@@ -63,6 +63,7 @@ export class PrincipalComponent {
   editar(): void {
     this.servico.editar(this.cliente)
       .subscribe(retorno => {
+        
         // Obter posição do vetor onde está o cliente
         let posicao = this.clientes.findIndex(obj => {
           return obj.codigo == retorno.codigo;
@@ -83,6 +84,34 @@ export class PrincipalComponent {
         alert('Cliente alterado com sucesso!');
       });
   }
+
+  // Método para remover clientes
+  remover(): void {
+    this.servico.remover(this.cliente.codigo)
+      .subscribe(retorno => {
+
+        // Obter posição do vetor onde está o cliente
+        let posicao = this.clientes.findIndex(obj => {
+          return obj.codigo == this.cliente.codigo;
+        });
+
+        // Remover cliente no vetor
+        this.clientes.splice(posicao, 1);
+
+        // Limpar formulário
+        this.cliente = new Cliente();
+
+        // Visibilidade dos botões
+        this.btnCadastro = true;
+
+        // Visibilidade da tabela
+        this.tabela = true;
+
+        // Mensagem
+        alert('Cliente removido com sucesso!');
+      });
+  }
+
   // Método de inciialização
   ngOnInit() {
     this.selecionar();
