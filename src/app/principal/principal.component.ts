@@ -8,6 +8,10 @@ import { ClienteService } from '../servico/cliente.service';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent {
+
+  //Objeto do tipo cliente
+  cliente = new Cliente();
+  
   // Variável para visibilidade dos botões
   btnCadastro: boolean = true;
 
